@@ -11,7 +11,7 @@
 - Display numbers, currency, dates and times for different locales.
 - Pluralize labels in strings.
 - Support variables in message.
-- Support HTML in message.
+- Support HTML in message ([read more](#html-message)).
 - Support for 150+ languages.
 - Runs in the browser and Node.js.
 - Message format is strictly implemented by [ICU standards](http://userguide.icu-project.org/formatparse/messages).
@@ -215,6 +215,23 @@ JS code:
 ```js
 intl.getHTML('TIP'); // {React.Element}
 ```
+
+Before using HTML tags inside the messages, you need to define how the HTML/XML tags you intend to use should be parsed, during the library initializing.
+
+Defining the XML parser:
+
+```js
+intl.init({
+  // ...
+  xmlParser: {
+    div: children => '<div>' + children + '</div>',
+    span: children => '<span>' + children + '</span>',
+    // ...
+  }
+})
+```
+
+Use this feature with caution as there are a set of restrictions. [Click here to learn more](https://formatjs.io/docs/intl-messageformat/#rich-text-support).
 
 ### Helper
 [react-intl-universal](https://www.npmjs.com/package/react-intl-universal) provides a utility helping developer determine the user's `currentLocale`. As the running examples, when user select a new locale, it redirect user new location like `http://localhost:3000?lang=en-US`. Then, we can use `intl.determineLocale` to get the locale from URL. It can also support determine user's locale via cookie, localStorage, and browser default language. Refer to the APIs section for more detail.

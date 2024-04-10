@@ -174,10 +174,11 @@ class ReactIntlUniversal {
 
   /**
    * Initialize properties and load CLDR locale data according to currentLocale
-   * @param {Object} options
-   * @param {string} options.currentLocale Current locale such as 'en-US'
-   * @param {any} options.locales App locale data like {"en-US":{"key1":"value1"},"zh-CN":{"key1":"值1"}}
-   * @param {boolean} [options.debug] debug mode
+   * @param {Object} options Initialization options
+   * @param {string} options.currentLocale Current locale (eg. `'en-US'`)
+   * @param {any} options.locales App locale data (eg. `{ "en-US": { "key1": "value1" }, "zh-CN": { "key1": "值1" }}`)
+   * @param {boolean} [options.debug] Enable debug mode
+   * @param {{[tag: string]: (children: any) => string}} [options.xmlParser] Indicates how to parse XML tags inside the messages. (eg. `{ span: children => '<span>' + children + '</span>' }`)
    * @returns {Promise}
    */
   init(options = {}) {
